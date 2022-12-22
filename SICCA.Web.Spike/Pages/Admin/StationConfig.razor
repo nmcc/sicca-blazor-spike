@@ -1,0 +1,15 @@
+﻿@page "/admin/station"
+@inherits StationConfigBase
+
+<InputSelect @bind-Value=@SelectedStation>
+    <option value="-1">--Seleccionar estação--</option>
+    @foreach (var station in Stations)
+    {
+        <option value="@station.Id">@station.Name</option>
+    }
+</InputSelect>
+
+@if (SelectedStation != null)
+{
+
+}

@@ -1,0 +1,38 @@
+﻿@page "/admin/central"
+@inherits CentralConfigBase
+
+<h3>Configuração de estação</h3>
+
+<EditForm Model=@Model>
+    <DataAnnotationsValidator />
+
+    <div class="form-group row">
+        <label>
+            IP Central 1:
+        </label>
+        <InputText @bind-Value="Model.Central1Ip" />
+        <ValidationMessage For="@(() => Model.Central1Ip)" />
+    </div>
+
+    <div class="form-group row">
+        <label>
+            IP Port 1:
+            <InputNumber @bind-Value="Model.Central1Port" />
+        </label>
+        <ValidationMessage For="@(() => Model.Central1Port)" />
+    </div>
+   @*
+
+    <label>
+        IP Central 1:
+        <InputText @bind-Value="Model.Central1Ip" />
+    </label>
+    <ValidationMessage For="@(() => Model.Central1Ip)" />
+
+    <label>
+        IP Port 1:
+        <InputText @bind-Value="Model.Central1Port" />
+    </label>
+    <ValidationMessage For=Model.Central1Port />
+    *@
+</EditForm>
