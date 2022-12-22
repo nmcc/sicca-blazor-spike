@@ -6,32 +6,33 @@
 <EditForm Model=@Model>
     <DataAnnotationsValidator />
 
-    <div class="form-group row">
-        <label>
-            IP Central 1:
-        </label>
-        <InputText @bind-Value="Model.Central1Ip" />
-        <ValidationMessage For="@(() => Model.Central1Ip)" />
+    <div class="form-group">
+            <label for="input-central-ip1">
+                IP Central 1:
+            </label>
+            <InputText @bind-Value="Model.Central1Ip" id="input-central-ip1" />
+            <small id="central-ip-1-help" class="form-text text-muted">O endereço IP do Central</small>
+        <ValidationMessage For="@(() => Model.Central1Ip)" class="invalid-feedback" />
     </div>
 
-    <div class="form-group row">
+    <div class="form-group">
         <label>
             IP Port 1:
             <InputNumber @bind-Value="Model.Central1Port" />
         </label>
         <ValidationMessage For="@(() => Model.Central1Port)" />
     </div>
-   @*
+    @*
 
     <label>
-        IP Central 1:
-        <InputText @bind-Value="Model.Central1Ip" />
+    IP Central 1:
+    <InputText @bind-Value="Model.Central1Ip" />
     </label>
     <ValidationMessage For="@(() => Model.Central1Ip)" />
 
     <label>
-        IP Port 1:
-        <InputText @bind-Value="Model.Central1Port" />
+    IP Port 1:
+    <InputText @bind-Value="Model.Central1Port" />
     </label>
     <ValidationMessage For=Model.Central1Port />
     *@

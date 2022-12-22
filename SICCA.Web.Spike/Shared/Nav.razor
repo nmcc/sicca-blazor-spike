@@ -1,5 +1,70 @@
 ﻿<!-- Sidebar -->
-<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #e3f2fd;">
+    <a class="navbar-brand" href="#">SICCA</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Monitoria</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                    Relatórios
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="/">Alarmes e alertas</a></li>
+                    <li><a class="dropdown-item" href="/">Estados funcionamento</a></li>
+                    <li><a class="dropdown-item" href="/">Comunicações efectuadas</a></li>
+                    <li><a class="dropdown-item" href="/">Comandos efectuados</a></li>
+                    <li><a class="dropdown-item" href="/">Configurações</a></li>
+                    <li><a class="dropdown-item" href="/">Validações</a></li>
+                    <li><a class="dropdown-item" href="/">Pesquisa Validações</a></li>
+                    <li><a class="dropdown-item" href="/">Emergências</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="/">Sistema</a></li>
+                    <li><a class="dropdown-item" href="/">Contadores de canal de acesso</a></li>
+                    <li><a class="dropdown-item" href="/">Validações</a></li>
+                    <li><a class="dropdown-item" href="/">Débitos acumulados</a></li>
+
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                    Administração
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Configurações</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#">DAV</a></li>
+                    <li><a class="dropdown-item" href="#">Software Validador</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#">Parametrização Central</a></li>
+                    <li><a class="dropdown-item" href="#">Parametrização Estação</a></li>
+                    <li><a class="dropdown-item" href="#">Parametrização Validadores</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#">Alarmes</a></li>
+                    <li><a class="dropdown-item" href="#">Mapas</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#">Limpeza histórico</a></li>
+                    <li><a class="dropdown-item" href="#">Limpeza logs</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#">Processos</a></li>
+
+                </ul>
+            </li>
+            @*<li class="nav-item">
+            <a class="nav-link disabled" href="#">Disabled</a>
+            </li>*@
+        </ul>
+    </div>
+</nav>
+
+
+@*<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
@@ -37,14 +102,14 @@
         </a>
         <div id="collapseReports" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="/">Alarmes e alertas</a>
-                <a class="collapse-item" href="/">Estados funcionamento</a>
-                <a class="collapse-item" href="/">Comunicações efectuadas</a>
-                <a class="collapse-item" href="/">Comandos efectuados</a>
-                <a class="collapse-item" href="/">Configurações</a>
-                <a class="collapse-item" href="/">Validações</a>
-                <a class="collapse-item" href="/">Pesquisa Validações</a>
-                <a class="collapse-item" href="/">Emergências</a>
+                <a class="dropdown-item" href="/">Alarmes e alertas</a>
+                <a class="dropdown-item" href="/">Estados funcionamento</a>
+                <a class="dropdown-item" href="/">Comunicações efectuadas</a>
+                <a class="dropdown-item" href="/">Comandos efectuados</a>
+                <a class="dropdown-item" href="/">Configurações</a>
+                <a class="dropdown-item" href="/">Validações</a>
+                <a class="dropdown-item" href="/">Pesquisa Validações</a>
+                <a class="dropdown-item" href="/">Emergências</a>
             </div>
         </div>
     </li>
@@ -59,10 +124,10 @@
         </a>
         <div id="collapseIndicators" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="/">Sistema</a>
-                <a class="collapse-item" href="/">Contadores de canal de acesso</a>
-                <a class="collapse-item" href="/">Validações</a>
-                <a class="collapse-item" href="/">Débitos acumulados</a>
+                <a class="dropdown-item" href="/">Sistema</a>
+                <a class="dropdown-item" href="/">Contadores de canal de acesso</a>
+                <a class="dropdown-item" href="/">Validações</a>
+                <a class="dropdown-item" href="/">Débitos acumulados</a>
             </div>
         </div>
     </li>
@@ -90,8 +155,8 @@
         <div id="collapseUpdates" class="collapse" aria-labelledby="headingUtilities"
              data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="/">DAV</a>
-                <a class="collapse-item" href="/">Software Validador</a>
+                <a class="dropdown-item" href="/">DAV</a>
+                <a class="dropdown-item" href="/">Software Validador</a>
                 </div>
                 </div>
 
@@ -103,9 +168,9 @@
         <div id="collapseParameters" class="collapse" aria-labelledby="headingUtilities"
              data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="/admin/station">Estação</a>
-                <a class="collapse-item" href="/">SICCA Validador</a>
-                <a class="collapse-item" href="/admin/central">SICCA Central</a>
+                <a class="dropdown-item" href="/admin/station">Estação</a>
+                <a class="dropdown-item" href="/">SICCA Validador</a>
+                <a class="dropdown-item" href="/admin/central">SICCA Central</a>
             </div>
         </div>
 
@@ -118,7 +183,7 @@
             <i class="fas fa-fw fa-cog"></i>
             <span>Mapas</span>
         </a>
-        
+
         <a class="nav-link collapsed" href="#">
             <i class="fas fa-fw fa-cog"></i>
             <span>Processos</span>
@@ -132,8 +197,8 @@
         <div id="collapseCleanup" class="collapse" aria-labelledby="headingUtilities"
              data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="/">Histórico</a>
-                <a class="collapse-item" href="/">Logs</a>
+                <a class="dropdown-item" href="/">Histórico</a>
+                <a class="dropdown-item" href="/">Logs</a>
             </div>
         </div>
     </li>
@@ -151,7 +216,7 @@
         <img class="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="...">
         <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!</p>
         <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
-    </div>*@
+    </div>
 
-</ul>
+</ul>*@
 <!-- End of Sidebar -->
