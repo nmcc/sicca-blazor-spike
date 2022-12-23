@@ -1,0 +1,33 @@
+﻿@using System.Reflection
+@using System.Linq.Expressions;
+@using System.ComponentModel.DataAnnotations;
+@typeparam T
+
+@if (string.IsNullOrEmpty(description))
+{
+}
+else if (ChildContent == null)
+{
+    <small class="form-text text-muted">@description</small>
+}
+else
+{
+    <small class="form-text text-muted">
+        @description
+        @ChildContent
+    </small>
+}
+
+@code {
+    [Parameter] public Expression<Func<T>> For { get; set; }
+    [Parameter] public RenderFragment ChildContent { get; set; }
+
+    private string description => GetDisplayName();
+
+    private string GetDisplayName()
+    {
+        var expression = (MemberExpression)For.Body;
+        var value = expression.Member.GetCustomAttribute(typeof(DisplayAttribute)) as DisplayAttribute;
+        return value?.Description ?? "";
+    }
+}

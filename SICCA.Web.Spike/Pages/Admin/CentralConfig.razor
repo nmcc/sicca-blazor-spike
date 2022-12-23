@@ -1,39 +1,25 @@
 ﻿@page "/admin/central"
 @inherits CentralConfigBase
 
-<h3>Configuração de estação</h3>
+<h3>Configuração Central</h3>
 
-<EditForm Model=@Model>
+<EditForm Model=@Model class="row g-3 needs-validation">
     <DataAnnotationsValidator />
+    <div class="row">
+        <div class="col-md-4">
+            <DisplayName For="@(() => Model.Central1Ip)"/>
+            <InputText @bind-Value="Model.Central1Ip" id="input-central-ip1" class="form-control" required />
+            <DisplayDescription For="@(() => Model.Central1Ip)"/>
+            <ValidationMessage For="@(() => Model.Central1Ip)" class="invalid-feedback" />
+        </div>
 
-    <div class="form-group">
-            <label for="input-central-ip1">
-                IP Central 1:
-            </label>
-            <InputText @bind-Value="Model.Central1Ip" id="input-central-ip1" />
-            <small id="central-ip-1-help" class="form-text text-muted">O endereço IP do Central</small>
-        <ValidationMessage For="@(() => Model.Central1Ip)" class="invalid-feedback" />
+        <div class="col-md-3">
+            <DisplayName For="@(() => Model.Central1Port)"/>
+            <InputNumber @bind-Value="Model.Central1Port" class="form-control" />
+            <DisplayDescription For="@(() => Model.Central1Port)"/>
+            <ValidationMessage For="@(() => Model.Central1Port)" class="invalid-feedback" />
+        </div>
     </div>
-
-    <div class="form-group">
-        <label>
-            IP Port 1:
-            <InputNumber @bind-Value="Model.Central1Port" />
-        </label>
-        <ValidationMessage For="@(() => Model.Central1Port)" />
+    <div class="row">
     </div>
-    @*
-
-    <label>
-    IP Central 1:
-    <InputText @bind-Value="Model.Central1Ip" />
-    </label>
-    <ValidationMessage For="@(() => Model.Central1Ip)" />
-
-    <label>
-    IP Port 1:
-    <InputText @bind-Value="Model.Central1Port" />
-    </label>
-    <ValidationMessage For=Model.Central1Port />
-    *@
 </EditForm>

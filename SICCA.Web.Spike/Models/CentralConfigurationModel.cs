@@ -4,20 +4,14 @@ namespace SICCA.Web.Spike.Models;
 
 public class CentralConfigurationModel
 {
-    [Required]
-    [MinLength(5)]
+    [Display(Name = "IP do Central")]
+    [Required(ErrorMessage = "Campo obrigatório")]
     [RegularExpression(@"\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}", ErrorMessage = "IP Inválido")]
     public string Central1Ip { get; set; } = string.Empty;
 
-    [Required]
-    [Range(1, 65533)]
+    [Display(Name = "Porto do Central", Description = "Numero entre 1 e 65532")]
+    [Required(ErrorMessage = "Campo obrigatório")]
+    [Range(1, 65532, ErrorMessage = "Introduzir numero entre 1 e 65532")]
     public int Central1Port { get; set; }
 
-    [Required]
-    [RegularExpression(@"\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}", ErrorMessage = "IP Inválido")]
-    public string Central2Ip { get; set; } = string.Empty;
-
-    [Required]
-    [Range(1, 65533)]
-    public int Central2Port { get; set; }
 }
