@@ -1,15 +1,49 @@
 ﻿@page "/admin/station"
+@page "/admin/station/{stationId}"
 @inherits StationConfigBase
 
-<InputSelect @bind-Value=@SelectedStation>
-    <option value="-1">--Seleccionar estação--</option>
-    @foreach (var station in Stations)
-    {
-        <option value="@station.Id">@station.Name</option>
-    }
-</InputSelect>
+<h3>Configurações de Estação</h3>
 
-@if (SelectedStation != null)
-{
+<h5>Seleccione a estação:</h5>
+<div class="container-fluid">
+    <div class="row">
 
-}
+        <div class="col">
+            <div class="list-group">
+                @foreach (var station in Stations)
+                {
+                    var selected = SelectedStation?.Id == station.Id ? "active" : string.Empty;
+
+                    <a class="@($"list-group-item {selected}")" href="@($"/admin/station/{station.Id}")"
+                        @onclick="@(e => this.SelectedStation = station)">@station.Name</a>
+                }
+            </div>
+        </div>
+        <div class="col-2">
+            @if (SelectedStation != null)
+            {
+                <div class="shadow-sm p-3 mb-5 bg-white rounded">
+                    <h5>Gamas de IPs autorizados</h5>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>192.168.1.1</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </div>
+        <div class="col-2">
+            @if (SelectedStation != null)
+            {
+                <div class="shadow-sm p-3 mb-5 bg-white rounded">
+                </div>
+            }
+        </div>
+        <div class="col-6">
+        </div>
+
+    </div>
+</div>
+
