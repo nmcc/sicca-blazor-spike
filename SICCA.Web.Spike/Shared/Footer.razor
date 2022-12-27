@@ -1,8 +1,24 @@
-﻿    <!-- Footer -->
+﻿@using Microsoft.AspNetCore.Components.Authorization;
+@using System.Security.Claims;
+<!-- Footer -->
 <footer class="fixed-bottom" style="background-color: #e3f2fd;">
     <i class="fa-solid fa-user"></i>
-    <span>Utilizador: Nuno Caneco</span>
+    <span>Utilizador: @(ClaimsPrincipal.Identity.IsAuthenticated ? ClaimsPrincipal.Identity.Name : "Anonymous") </span>
     <i class="fa-solid fa-circle-user"></i>
-    <span>Perfil: Administrador, Operador</span>
+    <span>Perfil: TBD </span>
 </footer>
 <!-- End of Footer -->
+
+@code {
+    [Inject]
+    public AuthenticationStateProvider AuthenticationStateProvider { get; set; }
+
+    protected ClaimsPrincipal ClaimsPrincipal { get; private set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+
+        ClaimsPrincipal = authState.User;
+    }
+}

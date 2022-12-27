@@ -56,6 +56,7 @@
   <ItemGroup>
     <PackageReference Include="bootstrap" Version="5.2.3" />
     <PackageReference Include="FontAwesome" Version="4.7.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Negotiate" Version="7.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="7.0.1" />
   </ItemGroup>
 
