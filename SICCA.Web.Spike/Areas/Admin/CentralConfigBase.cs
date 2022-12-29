@@ -3,7 +3,7 @@ using SICCA.Web.Spike.Models;
 
 namespace SICCA.Web.Spike.Areas.Admin;
 
-public class CentralConfigBase : Admin
+public class CentralConfigBase : ComponentBase
 {
     public CentralConfigurationModel? Model { get; set; }
 
