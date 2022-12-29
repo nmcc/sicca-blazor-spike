@@ -2,48 +2,56 @@
 @page "/admin/station/{stationId}"
 @inherits StationConfigBase
 
-<h3>Configurações de Estação</h3>
+<AuthorizeView Roles="Administrator">
+    <Authorized>
 
-<h5>Seleccione a estação:</h5>
-<div class="container-fluid">
-    <div class="row">
+        <h3>Configurações de Estação</h3>
 
-        <div class="col">
-            <div class="list-group">
-                @foreach (var station in Stations)
-                {
-                    var selected = SelectedStation?.Id == station.Id ? "active" : string.Empty;
+        <h5>Seleccione a estação:</h5>
+        <div class="container-fluid">
+            <div class="row">
 
-                    <a class="@($"list-group-item {selected}")" href="@($"/admin/station/{station.Id}")"
-                        @onclick="@(e => this.SelectedStation = station)">@station.Name</a>
-                }
+                <div class="col">
+                    <div class="list-group">
+                        @foreach (var station in Stations)
+                        {
+                            var selected = SelectedStation?.Id == station.Id ? "active" : string.Empty;
+
+                            <a class="@($"list-group-item {selected}")" href="@($"/admin/station/{station.Id}")"
+                           @onclick="@(e => this.SelectedStation = station)">@station.Name</a>
+                        }
+                    </div>
+                </div>
+                <div class="col-2">
+                    @if (SelectedStation != null)
+                    {
+                        <div class="shadow-sm p-3 mb-5 bg-white rounded">
+                            <h5>Gamas de IPs autorizados</h5>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>192.168.1.1</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                </div>
+                <div class="col-2">
+                    @if (SelectedStation != null)
+                    {
+                        <div class="shadow-sm p-3 mb-5 bg-white rounded">
+                        </div>
+                    }
+                </div>
+                <div class="col-6">
+                </div>
+
             </div>
         </div>
-        <div class="col-2">
-            @if (SelectedStation != null)
-            {
-                <div class="shadow-sm p-3 mb-5 bg-white rounded">
-                    <h5>Gamas de IPs autorizados</h5>
-                    <table>
-                        <tbody>
-                            <tr>
-                                <td>192.168.1.1</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            }
-        </div>
-        <div class="col-2">
-            @if (SelectedStation != null)
-            {
-                <div class="shadow-sm p-3 mb-5 bg-white rounded">
-                </div>
-            }
-        </div>
-        <div class="col-6">
-        </div>
 
-    </div>
-</div>
-
+    </Authorized>
+    <NotAuthorized>
+        <p>You can't access this view</p>
+    </NotAuthorized>
+</AuthorizeView>
