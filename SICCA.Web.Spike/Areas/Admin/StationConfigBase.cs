@@ -2,7 +2,7 @@
 using SICCA.Web.Spike.Models;
 using SICCA.Web.Spike.Services;
 
-namespace SICCA.Web.Spike.Pages.Admin;
+namespace SICCA.Web.Spike.Areas.Admin;
 
 public class StationConfigBase : ComponentBase
 {
