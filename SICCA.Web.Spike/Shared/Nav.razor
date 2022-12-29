@@ -1,4 +1,9 @@
-﻿<!-- Sidebar -->
+﻿@using Microsoft.AspNetCore.Components.Authorization
+@using System.Security.Claims;
+
+@inject AuthenticationStateProvider AuthStateProvider
+
+<!-- Sidebar -->
 
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
     <a class="navbar-brand" href="#">SICCA</a>
@@ -14,214 +19,69 @@
                     <span>Monitoria</span>
                 </a>
             </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                    <i class="fa-solid fa-file-invoice"></i>
-                    <span>Relatórios</span>
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="/">Alarmes e alertas</a></li>
-                    <li><a class="dropdown-item" href="/">Estados funcionamento</a></li>
-                    <li><a class="dropdown-item" href="/">Comunicações efectuadas</a></li>
-                    <li><a class="dropdown-item" href="/">Comandos efectuados</a></li>
-                    <li><a class="dropdown-item" href="/">Configurações</a></li>
-                    <li><a class="dropdown-item" href="/">Validações</a></li>
-                    <li><a class="dropdown-item" href="/">Pesquisa Validações</a></li>
-                    <li><a class="dropdown-item" href="/">Emergências</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="/">Sistema</a></li>
-                    <li><a class="dropdown-item" href="/">Contadores de canal de acesso</a></li>
-                    <li><a class="dropdown-item" href="/">Validações</a></li>
-                    <li><a class="dropdown-item" href="/">Débitos acumulados</a></li>
+            @if (User.HasClaim(ClaimTypes.Role, "Administrator"))
+            {
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                        <i class="fa-solid fa-file-invoice"></i>
+                        <span>Relatórios</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/">Alarmes e alertas</a></li>
+                        <li><a class="dropdown-item" href="/">Estados funcionamento</a></li>
+                        <li><a class="dropdown-item" href="/">Comunicações efectuadas</a></li>
+                        <li><a class="dropdown-item" href="/">Comandos efectuados</a></li>
+                        <li><a class="dropdown-item" href="/">Configurações</a></li>
+                        <li><a class="dropdown-item" href="/">Validações</a></li>
+                        <li><a class="dropdown-item" href="/">Pesquisa Validações</a></li>
+                        <li><a class="dropdown-item" href="/">Emergências</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="/">Sistema</a></li>
+                        <li><a class="dropdown-item" href="/">Contadores de canal de acesso</a></li>
+                        <li><a class="dropdown-item" href="/">Validações</a></li>
+                        <li><a class="dropdown-item" href="/">Débitos acumulados</a></li>
 
-                </ul>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                    <i class="fa-solid fa-gear"></i>
-                    Administração
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Configurações</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">DAV</a></li>
-                    <li><a class="dropdown-item" href="#">Software Validador</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="/admin/central">Parametrização Central</a></li>
-                    <li><a class="dropdown-item" href="/admin/station">Parametrização Estação</a></li>
-                    <li><a class="dropdown-item" href="#">Parametrização Validadores</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">Alarmes</a></li>
-                    <li><a class="dropdown-item" href="#">Mapas</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">Limpeza histórico</a></li>
-                    <li><a class="dropdown-item" href="#">Limpeza logs</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">Processos</a></li>
+                    </ul>
+                </li>
 
-                </ul>
-            </li>
-            @*<li class="nav-item">
-            <a class="nav-link disabled" href="#">Disabled</a>
-            </li>*@
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                        <i class="fa-solid fa-gear"></i>
+                        Administração
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Configurações</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">DAV</a></li>
+                        <li><a class="dropdown-item" href="#">Software Validador</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="/admin/central">Parametrização Central</a></li>
+                        <li><a class="dropdown-item" href="/admin/station">Parametrização Estação</a></li>
+                        <li><a class="dropdown-item" href="#">Parametrização Validadores</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Alarmes</a></li>
+                        <li><a class="dropdown-item" href="#">Mapas</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Limpeza histórico</a></li>
+                        <li><a class="dropdown-item" href="#">Limpeza logs</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Processos</a></li>
+
+                    </ul>
+                </li>
+            }
         </ul>
     </div>
 </nav>
 
 
-@*<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+@code {
+    protected ClaimsPrincipal? User { get; private set; }
 
-    <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-        <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-laugh-wink"></i>
-        </div>
-        <div class="sidebar-brand-text mx-3">SICCA</div>
-    </a>
-
-    <!-- Divider -->
-    <hr class="sidebar-divider my-0">
-
-    <!-- Nav Item - Dashboard -->
-    <li class="nav-item active">
-        <a class="nav-link" href="/">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Monitorização</span>
-        </a>
-    </li>
-
-    <!-- Divider -->
-    <hr class="sidebar-divider">
-
-    <!-- Heading -->
-    <div class="sidebar-heading">
-        Relatórios
-    </div>
-
-    <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReports"
-           aria-expanded="true" aria-controls="collapseReports">
-            <i class="fas fa-fw fa-cog"></i>
-            <span>Relatórios</span>
-        </a>
-        <div id="collapseReports" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a class="dropdown-item" href="/">Alarmes e alertas</a>
-                <a class="dropdown-item" href="/">Estados funcionamento</a>
-                <a class="dropdown-item" href="/">Comunicações efectuadas</a>
-                <a class="dropdown-item" href="/">Comandos efectuados</a>
-                <a class="dropdown-item" href="/">Configurações</a>
-                <a class="dropdown-item" href="/">Validações</a>
-                <a class="dropdown-item" href="/">Pesquisa Validações</a>
-                <a class="dropdown-item" href="/">Emergências</a>
-            </div>
-        </div>
-    </li>
-
-
-    <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseIndicators"
-           aria-expanded="true" aria-controls="collapseIndicators">
-            <i class="fas fa-fw fa-cog"></i>
-            <span>Indicadores</span>
-        </a>
-        <div id="collapseIndicators" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a class="dropdown-item" href="/">Sistema</a>
-                <a class="dropdown-item" href="/">Contadores de canal de acesso</a>
-                <a class="dropdown-item" href="/">Validações</a>
-                <a class="dropdown-item" href="/">Débitos acumulados</a>
-            </div>
-        </div>
-    </li>
-
-    <!-- Divider -->
-    <hr class="sidebar-divider">
-
-    <!-- Heading -->
-    <div class="sidebar-heading">
-        Administração
-    </div>
-
-    <!-- Nav Item - Utilities Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#">
-            <i class="fas fa-fw fa-wrench"></i>
-            <span>Configurações</span>
-        </a>
-
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUpdates"
-           aria-expanded="true" aria-controls="collapseUpdates">
-            <i class="fas fa-fw fa-cog"></i>
-            <span>Updates</span>
-        </a>
-        <div id="collapseUpdates" class="collapse" aria-labelledby="headingUtilities"
-             data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a class="dropdown-item" href="/">DAV</a>
-                <a class="dropdown-item" href="/">Software Validador</a>
-                </div>
-                </div>
-
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseParameters"
-           aria-expanded="true" aria-controls="collapseParameters">
-            <i class="fas fa-fw fa-cog"></i>
-            <span>Parametrização</span>
-        </a>
-        <div id="collapseParameters" class="collapse" aria-labelledby="headingUtilities"
-             data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a class="dropdown-item" href="/admin/station">Estação</a>
-                <a class="dropdown-item" href="/">SICCA Validador</a>
-                <a class="dropdown-item" href="/admin/central">SICCA Central</a>
-            </div>
-        </div>
-
-        <a class="nav-link collapsed" href="#">
-            <i class="fas fa-fw fa-cog"></i>
-            <span>Alarmes</span>
-        </a>
-
-        <a class="nav-link collapsed" href="#">
-            <i class="fas fa-fw fa-cog"></i>
-            <span>Mapas</span>
-        </a>
-
-        <a class="nav-link collapsed" href="#">
-            <i class="fas fa-fw fa-cog"></i>
-            <span>Processos</span>
-        </a>
-
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCleanup"
-           aria-expanded="true" aria-controls="collapseCleanup">
-            <i class="fas fa-fw fa-cog"></i>
-            <span>Limpeza</span>
-        </a>
-        <div id="collapseCleanup" class="collapse" aria-labelledby="headingUtilities"
-             data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a class="dropdown-item" href="/">Histórico</a>
-                <a class="dropdown-item" href="/">Logs</a>
-            </div>
-        </div>
-    </li>
-
-    <!-- Divider -->
-    <hr class="sidebar-divider d-none d-md-block">
-
-    <!-- Sidebar Toggler (Sidebar) -->
-    <div class="text-center d-none d-md-inline">
-        <button class="rounded-circle border-0" id="sidebarToggle"></button>
-    </div>
-
-    <!-- Sidebar Message -->
-    @*<div class="sidebar-card d-none d-lg-flex">
-        <img class="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="...">
-        <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!</p>
-        <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
-    </div>
-
-</ul>*@
-<!-- End of Sidebar -->
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await AuthStateProvider.GetAuthenticationStateAsync();
+        User = authState?.User;
+    }
+}
