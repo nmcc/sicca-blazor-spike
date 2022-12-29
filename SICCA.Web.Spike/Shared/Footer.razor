@@ -1,19 +1,20 @@
 ﻿@using Microsoft.AspNetCore.Components.Authorization;
 @using System.Security.Claims;
-@using SICCA.Web.Spike.Authorization;
 @inject AuthenticationStateProvider AuthenticationStateProvider
 
 <!-- Footer -->
 <footer class="fixed-bottom" style="background-color: #e3f2fd;">
-    <i class="fa-solid fa-user"></i>
-    <span>Utilizador: @(ClaimsPrincipal.Identity.IsAuthenticated ? ClaimsPrincipal.Identity.Name : "Anonymous") </span>
-    <i class="fa-solid fa-circle-user"></i>
-    <span>Perfil: @GetSiccaRoles() </span>
+    <AuthorizeView>
+        <i class="fa-solid fa-user"></i>
+        <span>Utilizador: @context.User.Identity?.Name!</span>
+        <i class="fa-solid fa-circle-user"></i>
+        <span>Perfil: @GetSiccaRoles() </span>
+    </AuthorizeView>
 </footer>
 <!-- End of Footer -->
-
 @code {
     protected ClaimsPrincipal ClaimsPrincipal { get; private set; }
+
 
     protected override async Task OnInitializedAsync()
     {

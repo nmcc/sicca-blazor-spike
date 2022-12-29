@@ -1,24 +1,45 @@
 using Microsoft.AspNetCore.Authentication.Negotiate;
-using Microsoft.AspNetCore.Components.Authorization;
-using SICCA.Web.Spike.Authorization;
 using SICCA.Web.Spike.Services;
+using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 
 builder.Services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
-    .AddNegotiate(options => options.Events = new NegotiateEvents
+    .AddNegotiate(options =>
     {
-        OnAuthenticated = (authContext) => Task.Run(() =>
+        options.Events = new NegotiateEvents
         {
-            authContext.Success();
-        }),
+            OnAuthenticated = context =>
+            {
+                // TODO Move this to a different class
+                var windowsIdentity = context.Principal.Identity;
+
+                var claims = new List<Claim>();
+                
+                if (windowsIdentity?.Name != null)
+                {
+                    claims.Add(new Claim(ClaimTypes.Name, windowsIdentity.Name));
+                    claims.Add(new Claim(ClaimTypes.Role, "Administrator"));
+                    claims.Add(new Claim(ClaimTypes.Role, "Operador estação"));
+                }
+
+                var identity = new ClaimsIdentity(claims, "Windows");
+                var user = new ClaimsPrincipal(identity);
+
+                context.Principal = user;
+
+                return Task.CompletedTask;
+            }
+        };
     });
 
-builder.Services.AddScoped<WindowsAuthStateProvider>();
-builder.Services.AddScoped<AuthenticationStateProvider>(provider => provider.GetRequiredService<WindowsAuthStateProvider>());
-builder.Services.AddAuthorizationCore();
+builder.Services.AddAuthorization(options =>
+{
+    // By default, all incoming requests will be authorized according to the default policy.
+    options.FallbackPolicy = options.DefaultPolicy;
+});
 
 builder.Services.AddSingleton<StationService>();
 
