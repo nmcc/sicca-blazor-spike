@@ -1,18 +1,24 @@
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
-using SICCA.Web.Spike.Services;
 using Microsoft.AspNetCore.Authentication.Negotiate;
+using Microsoft.AspNetCore.Components.Authorization;
+using SICCA.Web.Spike.Authorization;
+using SICCA.Web.Spike.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
-    .AddNegotiate();
 
-builder.Services.AddAuthorization(options =>
-{
-    options.FallbackPolicy = options.DefaultPolicy;
-});
+builder.Services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
+    .AddNegotiate(options => options.Events = new NegotiateEvents
+    {
+        OnAuthenticated = (authContext) => Task.Run(() =>
+        {
+            authContext.Success();
+        }),
+    });
+
+builder.Services.AddScoped<WindowsAuthStateProvider>();
+builder.Services.AddScoped<AuthenticationStateProvider>(provider => provider.GetRequiredService<WindowsAuthStateProvider>());
+builder.Services.AddAuthorizationCore();
 
 builder.Services.AddSingleton<StationService>();
 
