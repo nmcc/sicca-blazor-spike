@@ -1,0 +1,26 @@
+﻿@inherits LayoutComponentBase
+
+@inject NavigationManager NavigationManager
+
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+    <Nav></Nav>
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+        <h1>This is the monitoring layout</h1>
+        <!-- Main Content -->
+        <div id="content">
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+                @Body
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+        <!-- End of Main Content -->
+    </div>
+    <!-- End of Content Wrapper -->
+    <Footer />
+</div>
+<!-- End of Page Wrapper -->

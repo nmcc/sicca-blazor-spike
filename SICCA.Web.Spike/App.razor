@@ -1,12 +1,26 @@
-﻿<CascadingAuthenticationState>
+﻿@inject NavigationManager NavigationManager
+
+<CascadingAuthenticationState>
     <Router AppAssembly="@typeof(App).Assembly">
         <Found Context="routeData">
-            <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)">
-                <NotAuthorized>
-                    <p>You're not authorized to see this page</p>
-                </NotAuthorized>
-            </AuthorizeRouteView>
-            <FocusOnNavigate RouteData="@routeData" Selector="h1" />
+            @if (NavigationManager.GetRelativeUri().StartsWith("/monitoring"))
+            {
+                <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MonitoringLayout)">
+                    <NotAuthorized>
+                        <p>You're not authorized to see this page</p>
+                    </NotAuthorized>
+                </AuthorizeRouteView>
+                <FocusOnNavigate RouteData="@routeData" Selector="h1" />
+            }   
+            else
+            {
+                <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)">
+                    <NotAuthorized>
+                        <p>You're not authorized to see this page</p>
+                    </NotAuthorized>
+                </AuthorizeRouteView>
+                <FocusOnNavigate RouteData="@routeData" Selector="h1" />
+            }
         </Found>
         <NotFound>
             <PageTitle>Not found</PageTitle>
