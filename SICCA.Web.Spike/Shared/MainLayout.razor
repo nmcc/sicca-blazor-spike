@@ -1,24 +1,31 @@
 ﻿@inherits LayoutComponentBase
+@inject NavigationManager NavigationManager
 
-<!-- Page Wrapper -->
-<div id="wrapper">
+<header id="header" class="header fixed-top d-flex align-items-center">
+    <div class="d-flex align-items-center justify-content-between">
+        <a href="/" class="logo d-flex align-items-center">
+            <img src="assets/img/logo.png" alt="">
+            <span class="d-none d-lg-block">SICCA</span>
+        </a>
+        <i class="bi bi-list toggle-sidebar-btn"></i>
+    </div><!-- End Logo -->
+
     <Nav></Nav>
+</header>
 
-    <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column">
+@if (NavigationManager.GetRelativeUri().StartsWith("/monitoring"))
+{
+    <MonitoringSidebar />
+}
+else
+{
+    <Sidebar />
+}
 
-        <!-- Main Content -->
-        <div id="content">
-            <!-- Begin Page Content -->
-            <div class="container-fluid">
-                @Body
-            </div>
-            <!-- /.container-fluid -->
-        </div>
-        <!-- End of Main Content -->
-    </div>
-    <!-- End of Content Wrapper -->
+<main id="main" class="main">
+
+    @Body
+
     <Footer />
-</div>
+</main>
 <!-- End of Page Wrapper -->
-

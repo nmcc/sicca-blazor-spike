@@ -3,82 +3,87 @@
 
 @inject AuthenticationStateProvider AuthStateProvider
 
-<!-- Sidebar -->
+<!-- Top bar -->
+<div class="search-bar navbar expand navbar-expand" id="navbarSupportedContent">
+    <ul class="navbar-nav d-flex align-items-center">
+        <AuthorizeView>
+            <Authorized>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/monitoring">
+                        <i class="fa-solid fa-gauge-high"></i>
+                        <span>Monitoria</span>
+                    </a>
+                </li>
+            </Authorized>
+        </AuthorizeView>
 
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
-    <a class="navbar-brand" href="#">SICCA</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+        <AuthorizeView Roles="Administrator">
+            <Authorized>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                        <i class="fa-solid fa-file-invoice"></i>
+                        <span>Relatórios</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/">Alarmes e alertas</a></li>
+                        <li><a class="dropdown-item" href="/">Estados funcionamento</a></li>
+                        <li><a class="dropdown-item" href="/">Comunicações efectuadas</a></li>
+                        <li><a class="dropdown-item" href="/">Comandos efectuados</a></li>
+                        <li><a class="dropdown-item" href="/">Configurações</a></li>
+                        <li><a class="dropdown-item" href="/">Validações</a></li>
+                        <li><a class="dropdown-item" href="/">Pesquisa Validações</a></li>
+                        <li><a class="dropdown-item" href="/">Emergências</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="/">Sistema</a></li>
+                        <li><a class="dropdown-item" href="/">Contadores de canal de acesso</a></li>
+                        <li><a class="dropdown-item" href="/">Validações</a></li>
+                        <li><a class="dropdown-item" href="/">Débitos acumulados</a></li>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <AuthorizeView>
-                <Authorized>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/monitoring">
-                            <i class="fa-solid fa-gauge-high"></i>
-                            <span>Monitoria</span>
-                        </a>
-                    </li>
-                </Authorized>
-            </AuthorizeView>
-
-            <AuthorizeView Roles="Administrator">
-                <Authorized>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                            <i class="fa-solid fa-file-invoice"></i>
-                            <span>Relatórios</span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/">Alarmes e alertas</a></li>
-                            <li><a class="dropdown-item" href="/">Estados funcionamento</a></li>
-                            <li><a class="dropdown-item" href="/">Comunicações efectuadas</a></li>
-                            <li><a class="dropdown-item" href="/">Comandos efectuados</a></li>
-                            <li><a class="dropdown-item" href="/">Configurações</a></li>
-                            <li><a class="dropdown-item" href="/">Validações</a></li>
-                            <li><a class="dropdown-item" href="/">Pesquisa Validações</a></li>
-                            <li><a class="dropdown-item" href="/">Emergências</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="/">Sistema</a></li>
-                            <li><a class="dropdown-item" href="/">Contadores de canal de acesso</a></li>
-                            <li><a class="dropdown-item" href="/">Validações</a></li>
-                            <li><a class="dropdown-item" href="/">Débitos acumulados</a></li>
-
-                        </ul>
-                    </li>
+                    </ul>
+                </li>
 
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                            <i class="fa-solid fa-gear"></i>
-                            Administração
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Configurações</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">DAV</a></li>
-                            <li><a class="dropdown-item" href="#">Software Validador</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="/admin/central">Parametrização Central</a></li>
-                            <li><a class="dropdown-item" href="/admin/station">Parametrização Estação</a></li>
-                            <li><a class="dropdown-item" href="#">Parametrização Validadores</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Alarmes</a></li>
-                            <li><a class="dropdown-item" href="#">Mapas</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Limpeza histórico</a></li>
-                            <li><a class="dropdown-item" href="#">Limpeza logs</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Processos</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                        <i class="fa-solid fa-gear"></i>
+                        Administração
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Configurações</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">DAV</a></li>
+                        <li><a class="dropdown-item" href="#">Software Validador</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="/admin/central">Parametrização Central</a></li>
+                        <li><a class="dropdown-item" href="/admin/station">Parametrização Estação</a></li>
+                        <li><a class="dropdown-item" href="#">Parametrização Validadores</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Alarmes</a></li>
+                        <li><a class="dropdown-item" href="#">Mapas</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Limpeza histórico</a></li>
+                        <li><a class="dropdown-item" href="#">Limpeza logs</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Processos</a></li>
 
-                        </ul>
-                    </li>
-                </Authorized>
-            </AuthorizeView>
-        </ul>
-    </div>
+                    </ul>
+                </li>
+            </Authorized>
+        </AuthorizeView>
+    </ul>
+</div>
+
+<nav class="header-nav ms-auto">
+    <ul class="d-flex align-items-center">
+        <AuthorizeView>
+            <li class="nav-item pe-3">
+                <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+                    <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+                    <span class="d-none d-md-block dropdown-toggle ps-2">@context.User.Identity.Name</span>
+                </a><!-- End Profile Iamge Icon -->
+            </li>
+        </AuthorizeView>
+    </ul>
 </nav>
 
 
