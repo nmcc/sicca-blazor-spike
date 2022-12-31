@@ -1,5 +1,4 @@
 ﻿@inherits LayoutComponentBase
-@inject NavigationManager NavigationManager
 
 <header id="header" class="header fixed-top d-flex align-items-center">
     <div class="d-flex align-items-center justify-content-between">
@@ -13,14 +12,7 @@
     <Nav></Nav>
 </header>
 
-@if (NavigationManager.GetRelativeUri().StartsWith("/monitoring"))
-{
-    <MonitoringSidebar />
-}
-else
-{
-    <Sidebar />
-}
+<Sidebar />
 
 <main id="main" class="main">
 
