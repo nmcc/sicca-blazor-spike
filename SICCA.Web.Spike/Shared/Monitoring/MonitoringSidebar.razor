@@ -1,14 +1,22 @@
-﻿<ul class="sidebar-nav" id="sidebar-nav">
+﻿<ul class="nav flex-column" id="sidebar-nav">
     <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#components-linha-sintra" data-bs-toggle="collapse" href="#">
             <i class="bi bi-grid"></i><span>Linha de Sintra</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-        <ul id="components-linha-sintra" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-            <li>
-                <a href="#">
-                    <i class="bi bi-circle"></i><span>Campolide</span>
+        <ul id="components-linha-sintra" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+            <li class="nav-item">
+                <a data-bs-target="#components-campolide" data-bs-toggle="collapse" href="/monitoring/station/1">
+                    <i class="bi bi-chevron-down ms-auto"></i>
                 </a>
-
+                <a href="/monitoring/station/1"><span>Campolide</span></a>
+                <ul id="components-campolide" class="nav-content collapse " data-bs-parent="#sidebar-linha-sintra">
+                    <li class="nav-item">
+                        <a href="/monitoring/accesschannel/1"><span>CAEgn01</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/monitoring/accesschannel/2"><span>CAEgn02</span></a>
+                    </li>
+                </ul>
             </li>
         </ul>
     </li><!-- End Linha de Sintra-->

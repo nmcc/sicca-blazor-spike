@@ -1,0 +1,10 @@
+﻿@page "/monitoring/accesschannel/{id:int}"
+
+<PluginBase>
+    <PluginContent><h1>Access channel @Id</h1></PluginContent>
+    <PluginActions><h3>Access control actions</h3></PluginActions>
+</PluginBase>
+
+@code {
+    [Parameter] public int Id { get; set; }
+}
