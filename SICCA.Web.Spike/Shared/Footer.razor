@@ -6,15 +6,15 @@
 <footer class="fixed-bottom" style="background-color: #e3f2fd;">
     <AuthorizeView>
         <i class="fa-solid fa-user"></i>
-        <span>Utilizador: @context.User.Identity?.Name!</span>
+        <span>Utilizador: @context.User.Identity?.Name</span>
         <i class="fa-solid fa-circle-user"></i>
         <span>Perfil: @GetSiccaRoles() </span>
     </AuthorizeView>
 </footer>
 <!-- End of Footer -->
-@code {
-    protected ClaimsPrincipal ClaimsPrincipal { get; private set; }
 
+@code {
+    private ClaimsPrincipal? ClaimsPrincipal { get; private set; }
 
     protected override async Task OnInitializedAsync()
     {
@@ -25,6 +25,6 @@
 
     protected string GetSiccaRoles()
     {
-        return string.Join(",", ClaimsPrincipal.Claims.Where(claim => claim.Type == ClaimTypes.Role).Select(claim => claim.Value));
+        return string.Join(",", ClaimsPrincipal?.Claims.Where(claim => claim.Type == ClaimTypes.Role).Select(claim => claim.Value));
     }
 }
