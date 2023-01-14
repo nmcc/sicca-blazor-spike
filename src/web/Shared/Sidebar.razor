@@ -3,7 +3,7 @@
 @inject NavigationManager NavigationManager
 
 <aside id="sidebar" class="sidebar">
-    @if (NavigationManager.GetRelativeUri().StartsWith("/monitoring"))
+    @if (NavigationManager.GetRelativeUri().StartsWith("/monitoring") || NavigationManager.GetRelativeUri().Equals("/"))
     {
         <MonitoringSidebar />
     }

@@ -1,28 +1,68 @@
-﻿<ul class="nav flex-column" id="sidebar-nav">
-    <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#components-linha-sintra" data-bs-toggle="collapse" href="#">
-            <i class="bi bi-grid"></i><span>Linha de Sintra</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="components-linha-sintra" class="nav-content collapse" data-bs-parent="#sidebar-nav">
-            <li class="nav-item">
-                <a data-bs-target="#components-campolide" data-bs-toggle="collapse" href="/monitoring/station/1">
-                    <i class="bi bi-chevron-down ms-auto"></i>
-                </a>
-                <a href="/monitoring/station/1"><span>Campolide</span></a>
-                <ul id="components-campolide" class="nav-content collapse " data-bs-parent="#sidebar-linha-sintra">
-                    <li class="nav-item">
-                        <a href="/monitoring/accesschannel/1"><span>CAEgn01</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/monitoring/accesschannel/2"><span>CAEgn02</span></a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-    </li><!-- End Linha de Sintra-->
-    <li class="nav-item">
-        <a class="nav-link " href="#">
-            <i class="bi bi-grid"></i><span>Linha de Cascais</span>
-        </a>
-    </li><!-- End Linha de Cascais-->
-</ul>
+﻿@using Excubo.Blazor.TreeViews
+
+<TreeView Items="Nested" GetChildren="(item) => item.Children" InitiallyCollapsed="true">
+    <ItemTemplate>
+        <Collapse @bind-Value="@context.Item.Collapsed" />
+        @if (!string.IsNullOrEmpty(context.Item.PathToIcon))
+        {
+            <img src="@context.Item.PathToIcon" />
+        }
+
+        @if (string.IsNullOrEmpty(context.Item.NavigateTo))
+        {
+            @context.Item.Name
+        }
+        else
+        {
+            <a href="@(context.Item.NavigateTo)">@context.Item.Name</a>
+        }
+    </ItemTemplate>
+</TreeView>
+
+
+@code {
+    private static readonly List<Item> AllItems = new List<Item>
+{
+        new Item
+        {
+            Name = "Linha de Sintra",
+            Children = new List<Item>
+            {
+                new Item
+                {
+                    Name = "Campolide",
+                    NavigateTo = "/monitoring/station/1",
+                    PathToIcon = "/img/st/estacao_24.png",
+                    Children = new List<Item>
+                    {
+                        new Item() { Name = "CAEgn01", NavigateTo = "/monitoring/accesschannel/1", PathToIcon = "/img/ac/operacional_24.png" },
+                        new Item() { Name = "CAEgn02", NavigateTo = "/monitoring/accesschannel/2", PathToIcon = "/img/ac/operacional_24.png" },
+                        new Item() { Name = "CAEgn03", NavigateTo = "/monitoring/accesschannel/3", PathToIcon = "/img/ac/operacional_24.png" },
+                    },
+                },
+                new Item
+                {
+                    Name = "Monte Abraão",
+                    NavigateTo = "/monitoring/station/2",
+                    PathToIcon = "/img/st/estacao_24.png",
+                    Children = new List<Item>
+                    {
+                    },
+                },
+            }
+        },
+        new Item
+        {
+            Name = "Linha de Cascais"
+        }
+    };
+    private class Item
+    {
+        public string Name { get; set; } = string.Empty;
+        public List<Item>? Children { get; set; }
+        public bool Collapsed { get; set; } = true;
+        public string? NavigateTo { get; set; }
+        public string? PathToIcon { get; set; }
+    }
+    private List<Item> Nested = AllItems.ToList();
+}
