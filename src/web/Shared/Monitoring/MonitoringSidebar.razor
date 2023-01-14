@@ -1,68 +1,90 @@
-﻿@using Excubo.Blazor.TreeViews
+﻿@using BlazorContextMenu
+@using Excubo.Blazor.TreeViews
+
+<ContextMenu Id="myMenu">
+    <BlazorContextMenu.Item OnClick="@OnClick">Acção 1</BlazorContextMenu.Item>
+    <BlazorContextMenu.Item OnClick="@OnClick">Acção 2</BlazorContextMenu.Item>
+    <BlazorContextMenu.Item OnClick="@OnClick" Enabled="false">Acção 3 (disabled)</BlazorContextMenu.Item>
+    <Seperator />
+    <BlazorContextMenu.Item>
+        Submenu
+        <SubMenu>
+            <BlazorContextMenu.Item OnClick="@OnClick">Submenu Acção 1</BlazorContextMenu.Item>
+        </SubMenu>
+    </BlazorContextMenu.Item>
+</ContextMenu>
 
 <TreeView Items="Nested" GetChildren="(item) => item.Children" InitiallyCollapsed="true">
     <ItemTemplate>
         <Collapse @bind-Value="@context.Item.Collapsed" />
-        @if (!string.IsNullOrEmpty(context.Item.PathToIcon))
-        {
-            <img src="@context.Item.PathToIcon" />
-        }
+        <ContextMenuTrigger MenuId="myMenu" Data="context.Item">
+            @if (!string.IsNullOrEmpty(context.Item.PathToIcon))
+            {
+                <img src="@context.Item.PathToIcon" />
+            }
 
-        @if (string.IsNullOrEmpty(context.Item.NavigateTo))
-        {
-            @context.Item.Name
-        }
-        else
-        {
-            <a href="@(context.Item.NavigateTo)">@context.Item.Name</a>
-        }
+            @if (string.IsNullOrEmpty(context.Item.NavigateTo))
+            {
+                @context.Item.Name
+            }
+            else
+            {
+                <a href="@(context.Item.NavigateTo)">@context.Item.Name</a>
+            }
+        </ContextMenuTrigger>
     </ItemTemplate>
 </TreeView>
 
 
 @code {
-    private static readonly List<Item> AllItems = new List<Item>
+    private static readonly List<TreeItem> AllItems = new List<TreeItem>
 {
-        new Item
+        new TreeItem
         {
             Name = "Linha de Sintra",
-            Children = new List<Item>
+            Children = new List<TreeItem>
             {
-                new Item
+                new TreeItem
                 {
                     Name = "Campolide",
                     NavigateTo = "/monitoring/station/1",
                     PathToIcon = "/img/st/estacao_24.png",
-                    Children = new List<Item>
+                    Children = new List<TreeItem>
                     {
-                        new Item() { Name = "CAEgn01", NavigateTo = "/monitoring/accesschannel/1", PathToIcon = "/img/ac/operacional_24.png" },
-                        new Item() { Name = "CAEgn02", NavigateTo = "/monitoring/accesschannel/2", PathToIcon = "/img/ac/operacional_24.png" },
-                        new Item() { Name = "CAEgn03", NavigateTo = "/monitoring/accesschannel/3", PathToIcon = "/img/ac/operacional_24.png" },
+                        new TreeItem() { Name = "CAEgn01", NavigateTo = "/monitoring/accesschannel/1", PathToIcon = "/img/ac/operacional_24.png" },
+                        new TreeItem() { Name = "CAEgn02", NavigateTo = "/monitoring/accesschannel/2", PathToIcon = "/img/ac/operacional_24.png" },
+                        new TreeItem() { Name = "CAEgn03", NavigateTo = "/monitoring/accesschannel/3", PathToIcon = "/img/ac/operacional_24.png" },
                     },
                 },
-                new Item
+                new TreeItem
                 {
                     Name = "Monte Abraão",
                     NavigateTo = "/monitoring/station/2",
                     PathToIcon = "/img/st/estacao_24.png",
-                    Children = new List<Item>
+                    Children = new List<TreeItem>
                     {
                     },
                 },
             }
         },
-        new Item
+        new TreeItem
         {
             Name = "Linha de Cascais"
         }
     };
-    private class Item
+    private class TreeItem
     {
         public string Name { get; set; } = string.Empty;
-        public List<Item>? Children { get; set; }
+        public List<TreeItem>? Children { get; set; }
         public bool Collapsed { get; set; } = true;
         public string? NavigateTo { get; set; }
         public string? PathToIcon { get; set; }
     }
-    private List<Item> Nested = AllItems.ToList();
+    private List<TreeItem> Nested = AllItems.ToList();
+
+    // CONTEXT MENU
+    void OnClick(ItemClickEventArgs e)
+    {
+        Console.WriteLine($"Doing some action for {(e.Data as TreeItem)?.Name}");
+    }
 }

@@ -17,6 +17,8 @@ builder.Services.AddSingleton<StationService>();
 builder.Services.AddSingleton<PluginStateService>();
 builder.Services.AddHostedService(p => p.GetRequiredService<PluginStateService>());
 
+builder.Services.AddBlazorContextMenu();
+
 var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
