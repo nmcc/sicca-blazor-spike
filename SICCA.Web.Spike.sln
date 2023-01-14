@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SICCA.Web.Spike", "src\web\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SICCA.Service.Mock", "src\service-mock\SICCA.Service.Mock.csproj", "{6F8095C8-3640-4082-90B4-58E7A74BE4CE}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SICCA.Service.Mock.Models", "src\models\SICCA.Service.Mock.Models.csproj", "{AC3ABA92-2C3E-4037-813C-DED71E7BB293}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{6F8095C8-3640-4082-90B4-58E7A74BE4CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6F8095C8-3640-4082-90B4-58E7A74BE4CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6F8095C8-3640-4082-90B4-58E7A74BE4CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC3ABA92-2C3E-4037-813C-DED71E7BB293}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC3ABA92-2C3E-4037-813C-DED71E7BB293}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC3ABA92-2C3E-4037-813C-DED71E7BB293}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC3ABA92-2C3E-4037-813C-DED71E7BB293}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

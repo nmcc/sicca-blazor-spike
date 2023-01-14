@@ -14,7 +14,7 @@
 <!-- End of Footer -->
 
 @code {
-    private ClaimsPrincipal? ClaimsPrincipal { get; private set; }
+    protected ClaimsPrincipal? ClaimsPrincipal { get; set; }
 
     protected override async Task OnInitializedAsync()
     {

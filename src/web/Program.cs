@@ -1,39 +1,11 @@
-using Microsoft.AspNetCore.Authentication.Negotiate;
+using SICCA.Web.Spike;
 using SICCA.Web.Spike.Services;
-using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 
-builder.Services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
-    .AddNegotiate(options =>
-    {
-        options.Events = new NegotiateEvents
-        {
-            OnAuthenticated = context =>
-            {
-                // TODO Move this to a different class
-                var windowsIdentity = context.Principal.Identity;
-
-                var claims = new List<Claim>();
-                
-                if (windowsIdentity?.Name != null)
-                {
-                    claims.Add(new Claim(ClaimTypes.Name, windowsIdentity.Name));
-                    claims.Add(new Claim(ClaimTypes.Role, "Administrator"));
-                    claims.Add(new Claim(ClaimTypes.Role, "Operador estação"));
-                }
-
-                var identity = new ClaimsIdentity(claims, "Windows");
-                var user = new ClaimsPrincipal(identity);
-
-                context.Principal = user;
-
-                return Task.CompletedTask;
-            }
-        };
-    });
+builder.Services.AddSiccaAuthentication();
 
 builder.Services.AddAuthorization(options =>
 {
@@ -42,6 +14,7 @@ builder.Services.AddAuthorization(options =>
 });
 
 builder.Services.AddSingleton<StationService>();
+builder.Services.AddHostedService<PluginStateService>();
 
 var app = builder.Build();
 
