@@ -14,7 +14,8 @@ builder.Services.AddAuthorization(options =>
 });
 
 builder.Services.AddSingleton<StationService>();
-builder.Services.AddHostedService<PluginStateService>();
+builder.Services.AddSingleton<PluginStateService>();
+builder.Services.AddHostedService(p => p.GetRequiredService<PluginStateService>());
 
 var app = builder.Build();
 

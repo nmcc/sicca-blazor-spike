@@ -1,9 +1,10 @@
 ﻿@page "/monitoring/accesschannel/{id:int}"
+@using SICCA.Web.Spike.Services;
 
 <PluginBase>
     <PluginContent>
         <h1>Access channel @Id</h1>
-        <p> This would contain the channel details.</p>
+        <p> Direction = @PluginStateService.GetAccessChannelState(Id)?.Direction</p>
     </PluginContent>
     <PluginActions>
         <h3>Access control actions</h3>
@@ -13,4 +14,19 @@
 
 @code {
     [Parameter] public int Id { get; set; }
+
+    [Inject] PluginStateService? PluginStateService { get; set; }
+
+    protected override void OnInitialized()
+    {
+        if (PluginStateService is null) throw new ArgumentNullException(nameof(PluginStateService));
+
+        PluginStateService.StateUpdated += RefreshUI;
+        base.OnInitialized();
+    }
+
+    void RefreshUI(object sender, EventArgs eventArgs)
+    {
+        InvokeAsync(StateHasChanged);
+    }
 }
