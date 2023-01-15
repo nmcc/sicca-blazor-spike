@@ -2,16 +2,24 @@
 @using SICCA.Web.Spike.Services;
 @implements IDisposable
 
-<PluginBase>
+<PluginTemplate>
     <PluginContent>
-        <h1>Access channel @Id</h1>
-        <p> Direction = @PluginStateService?.GetAccessChannelState(Id)?.Direction</p>
+        <h1>Canal de acesso @Id</h1>
+        <p> Direcção: @PluginStateService?.GetAccessChannelState(Id)?.Direction</p>
+        <p> Modo: @PluginStateService?.GetAccessChannelState(Id)?.Mode</p>
     </PluginContent>
     <PluginActions>
-        <h3>Access control actions</h3>
-        <p> This would contain the channel details.</p>
+        <div class="pagetitle">
+            <h3>Acções do canal</h3>
+        </div>
+        <ul>
+            <li>Sentido de validação</li>
+            <li>Modo</li>
+            <li>Operação</li>
+            <li>Segurança</li>
+        </ul>
     </PluginActions>
-</PluginBase>
+</PluginTemplate>
 
 @code {
     [Parameter] public int Id { get; set; }

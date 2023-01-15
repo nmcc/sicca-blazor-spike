@@ -1,9 +1,9 @@
 ﻿@page "/monitoring/station/{id:int}"
 
-<PluginBase>
-    <PluginContent><h1>Station @Id</h1></PluginContent>
-    <PluginActions><h3>Station actions</h3></PluginActions>
-</PluginBase>
+<PluginTemplate>
+    <PluginContent><h1>Estação @Id</h1></PluginContent>
+    <PluginActions><h3>Acções da estação</h3></PluginActions>
+</PluginTemplate>
 
 @code {
     [Parameter] public int Id { get; set; }

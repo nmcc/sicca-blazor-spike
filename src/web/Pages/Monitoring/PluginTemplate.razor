@@ -1,0 +1,30 @@
+﻿<div class="row">
+    <div class="col-9">
+        <div class="row">
+            <div class="alert alert-info">
+                <span>ESPINHA</span>
+            </div>
+        </div>
+        <div class="row">
+            @PluginContent
+        </div>
+    </div>
+    <div class="col-3">
+        <div class="row">
+            <div class="alert alert-danger">
+                <span>EMERGENCIA</span>
+            </div>
+        </div>
+        <div class="row">
+            @PluginActions
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public RenderFragment? PluginContent { get; set; }
+
+    [Parameter]
+    public RenderFragment? PluginActions { get; set; }
+}
