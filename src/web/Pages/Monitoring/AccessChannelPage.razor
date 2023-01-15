@@ -1,5 +1,6 @@
 ﻿@page "/monitoring/accesschannel/{id:int}"
 @using SICCA.Web.Spike.Services;
+@implements IDisposable
 
 <PluginBase>
     <PluginContent>
@@ -28,5 +29,13 @@
     void RefreshUI(object? sender, EventArgs eventArgs)
     {
         InvokeAsync(StateHasChanged);
+    }
+
+    public void Dispose()
+    {
+        if (PluginStateService is not null)
+        {
+            PluginStateService.StateUpdated -= RefreshUI;
+        }
     }
 }
