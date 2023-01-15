@@ -2,7 +2,6 @@
 @using System.Security.Claims;
 @inject AuthenticationStateProvider AuthenticationStateProvider
 
-<!-- Footer -->
 <footer class="fixed-bottom" style="background-color: #e3f2fd;">
     <AuthorizeView>
         <i class="fa-solid fa-user"></i>
@@ -11,7 +10,6 @@
         <span>Perfil: @GetSiccaRoles() </span>
     </AuthorizeView>
 </footer>
-<!-- End of Footer -->
 
 @code {
     protected ClaimsPrincipal? ClaimsPrincipal { get; set; }

@@ -1,40 +1,41 @@
 ﻿@using BlazorContextMenu
 @using Excubo.Blazor.TreeViews
 
-<ContextMenu Id="myMenu">
-    <BlazorContextMenu.Item OnClick="@OnClick">Acção 1</BlazorContextMenu.Item>
-    <BlazorContextMenu.Item OnClick="@OnClick">Acção 2</BlazorContextMenu.Item>
-    <BlazorContextMenu.Item OnClick="@OnClick" Enabled="false">Acção 3 (disabled)</BlazorContextMenu.Item>
-    <Seperator />
-    <BlazorContextMenu.Item>
-        Submenu
-        <SubMenu>
-            <BlazorContextMenu.Item OnClick="@OnClick">Submenu Acção 1</BlazorContextMenu.Item>
-        </SubMenu>
-    </BlazorContextMenu.Item>
-</ContextMenu>
+<aside id="sidebar" class="sidebar">
+    <ContextMenu Id="myMenu">
+        <BlazorContextMenu.Item OnClick="@OnClick">Acção 1</BlazorContextMenu.Item>
+        <BlazorContextMenu.Item OnClick="@OnClick">Acção 2</BlazorContextMenu.Item>
+        <BlazorContextMenu.Item OnClick="@OnClick" Enabled="false">Acção 3 (disabled)</BlazorContextMenu.Item>
+        <Seperator />
+        <BlazorContextMenu.Item>
+            Submenu
+            <SubMenu>
+                <BlazorContextMenu.Item OnClick="@OnClick">Submenu Acção 1</BlazorContextMenu.Item>
+            </SubMenu>
+        </BlazorContextMenu.Item>
+    </ContextMenu>
 
-<TreeView Items="Nested" GetChildren="(item) => item.Children" InitiallyCollapsed="true">
-    <ItemTemplate>
-        <Collapse @bind-Value="@context.Item.Collapsed" />
-        <ContextMenuTrigger MenuId="myMenu" Data="context.Item">
-            @if (!string.IsNullOrEmpty(context.Item.PathToIcon))
-            {
-                <img src="@context.Item.PathToIcon" />
-            }
+    <TreeView Items="Nested" GetChildren="(item) => item.Children" InitiallyCollapsed="true">
+        <ItemTemplate>
+            <Collapse @bind-Value="@context.Item.Collapsed" />
+            <ContextMenuTrigger MenuId="myMenu" Data="context.Item">
+                @if (!string.IsNullOrEmpty(context.Item.PathToIcon))
+                {
+                    <img src="@context.Item.PathToIcon" />
+                }
 
-            @if (string.IsNullOrEmpty(context.Item.NavigateTo))
-            {
-                @context.Item.Name
-            }
-            else
-            {
-                <a href="@(context.Item.NavigateTo)">@context.Item.Name</a>
-            }
-        </ContextMenuTrigger>
-    </ItemTemplate>
-</TreeView>
-
+                @if (string.IsNullOrEmpty(context.Item.NavigateTo))
+                {
+                    @context.Item.Name
+                }
+                else
+                {
+                    <a href="@(context.Item.NavigateTo)">@context.Item.Name</a>
+                }
+            </ContextMenuTrigger>
+        </ItemTemplate>
+    </TreeView>
+</aside>
 
 @code {
     private static readonly List<TreeItem> AllItems = new List<TreeItem>
