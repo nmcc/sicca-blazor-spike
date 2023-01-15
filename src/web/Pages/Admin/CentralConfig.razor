@@ -7,8 +7,8 @@
     <DataAnnotationsValidator />
     <div class="row">
         <div class="col-md-4">
-            <DisplayName For="@(() => Model.Central1Ip)" />
-            <InputText @bind-Value="Model.Central1Ip" id="input-central-ip1" class="form-control" required />
+            <DisplayName For="@(() => Model!.Central1Ip)" />
+            <InputText @bind-Value="Model!.Central1Ip" id="input-central-ip1" class="form-control" required />
             <DisplayDescription For="@(() => Model.Central1Ip)" />
             <ValidationMessage For="@(() => Model.Central1Ip)" class="invalid-feedback" />
         </div>

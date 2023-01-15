@@ -15,7 +15,7 @@ internal static class SICCAAuthenticationService
                     OnAuthenticated = context =>
                     {
                         // TODO Move this to a different class
-                        var windowsIdentity = context.Principal.Identity;
+                        var windowsIdentity = context.Principal?.Identity;
 
                         var claims = new List<Claim>();
 

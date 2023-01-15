@@ -16,15 +16,15 @@ else
 }
 
 @code {
-    [Parameter] public Expression<Func<T>> For { get; set; }
-    [Parameter] public RenderFragment ChildContent { get; set; }
+    [Parameter] public Expression<Func<T>>? For { get; set; }
+    [Parameter] public RenderFragment? ChildContent { get; set; }
 
     private string label => GetDisplayName();
 
     private string GetDisplayName()
     {
-        var expression = (MemberExpression)For.Body;
-        var value = expression.Member.GetCustomAttribute(typeof(DisplayAttribute)) as DisplayAttribute;
-        return value?.Name ?? expression.Member?.Name ?? "";
+        var expression = (MemberExpression?)For?.Body;
+        var value = expression?.Member.GetCustomAttribute(typeof(DisplayAttribute)) as DisplayAttribute;
+        return value?.Name ?? expression?.Member?.Name ?? "";
     }
 }

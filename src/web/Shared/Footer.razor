@@ -7,7 +7,7 @@
         <i class="fa-solid fa-user"></i>
         <span>Utilizador: @context.User.Identity?.Name</span>
         <i class="fa-solid fa-circle-user"></i>
-        <span>Perfil: @GetSiccaRoles() </span>
+        <span>Perfil: @GetSiccaRoles()</span>
     </AuthorizeView>
 </footer>
 
@@ -21,8 +21,8 @@
         ClaimsPrincipal = authState.User;
     }
 
-    protected string GetSiccaRoles()
-    {
-        return string.Join(",", ClaimsPrincipal?.Claims.Where(claim => claim.Type == ClaimTypes.Role).Select(claim => claim.Value));
-    }
+    protected string GetSiccaRoles() 
+        => ClaimsPrincipal is null
+            ? string.Empty
+            : string.Join(",", ClaimsPrincipal.Claims.Where(claim => claim.Type == ClaimTypes.Role).Select(claim => claim.Value));
 }

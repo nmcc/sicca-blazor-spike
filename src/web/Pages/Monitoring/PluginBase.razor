@@ -1,5 +1,4 @@
-﻿
-<div class="row">
+﻿<div class="row">
     <div class="col-lg-8">
         @PluginContent
     </div>
@@ -10,8 +9,8 @@
 
 @code {
     [Parameter]
-    public RenderFragment PluginContent { get; set; }
+    public RenderFragment? PluginContent { get; set; }
 
     [Parameter]
-    public RenderFragment PluginActions { get; set; }
+    public RenderFragment? PluginActions { get; set; }
 }

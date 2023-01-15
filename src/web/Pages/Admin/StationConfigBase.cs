@@ -7,7 +7,7 @@ namespace SICCA.Web.Spike.Areas.Admin;
 public class StationConfigBase : ComponentBase
 {
     [Inject]
-    public StationService StationService { get; set; }
+    public StationService? StationService { get; set; }
 
     [Parameter]
     public string StationId { get; set; } = string.Empty;
@@ -18,7 +18,7 @@ public class StationConfigBase : ComponentBase
 
     protected override Task OnInitializedAsync()
     {
-        this.Stations = StationService.GetStations().OrderBy(s => s.Name);
+        this.Stations = StationService!.GetStations().OrderBy(s => s.Name);
 
         if (!string.IsNullOrEmpty(StationId) && int.TryParse(StationId, out var stationId))
         {

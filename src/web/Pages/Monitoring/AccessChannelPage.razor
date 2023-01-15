@@ -4,7 +4,7 @@
 <PluginBase>
     <PluginContent>
         <h1>Access channel @Id</h1>
-        <p> Direction = @PluginStateService.GetAccessChannelState(Id)?.Direction</p>
+        <p> Direction = @PluginStateService?.GetAccessChannelState(Id)?.Direction</p>
     </PluginContent>
     <PluginActions>
         <h3>Access control actions</h3>
@@ -25,7 +25,7 @@
         base.OnInitialized();
     }
 
-    void RefreshUI(object sender, EventArgs eventArgs)
+    void RefreshUI(object? sender, EventArgs eventArgs)
     {
         InvokeAsync(StateHasChanged);
     }

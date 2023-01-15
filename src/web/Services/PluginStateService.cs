@@ -12,14 +12,14 @@ internal class PluginStateService : IHostedService
 
     public PluginStateService(ILogger<PluginStateService> logger)
     {
-        this.logger = logger;
+        this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
 
         this.hubConnection = new HubConnectionBuilder()
               .WithUrl("http://localhost:5145/StateUpdateHub")
               .Build();
     }
 
-    public event EventHandler StateUpdated;
+    public event EventHandler? StateUpdated;
 
     public async Task StartAsync(CancellationToken cancellationToken)
     {
@@ -38,17 +38,7 @@ internal class PluginStateService : IHostedService
         {
             pluginStateMap[accessChannelState.PluginId] = accessChannelState;
 
-            // Make a temporary copy of the event to avoid possibility of
-            // a race condition if the last subscriber unsubscribes
-            // immediately after the null check and before the event is raised.
-            var raiseEvent = StateUpdated;
-
-            // Event will be null if there are no subscribers
-            if (raiseEvent != null)
-            {
-                // Call to raise the event.
-                raiseEvent(this, new EventArgs());
-            }
+            StateUpdated?.Invoke(this, new EventArgs());
 
             logger.LogInformation("Access channel state {0} updated", accessChannelState.PluginId);
         }
