@@ -1,0 +1,57 @@
+﻿@page "/admin/updates/accesschannel"
+@inherits SoftwareUpdatesBase
+
+<div class="pagetitle">
+    <h1>Software Validador</h1>
+</div>
+
+<section>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Descrição</th>
+                <th scope="col">Ficheiro</th>
+                <th scope="col">Versão</th>
+                <th scope="col">Entrada em vigor</th>
+                <th scope="col">Acções</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var entry in this.Entries)
+            {
+                <tr>
+                    <th scope="row">@entry.Id</th>
+                    <td>@entry.Description</td>
+                    <td>@entry.FileName</td>
+                    <td>@entry.Version</td>
+                    <td>@entry.StartDateTime</td>
+                    <td>
+                        <button type="button" class="btn btn-success"><i class="fa-solid fa-download"></i> Download</button>
+                        <button type="button" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i> Enviar</button>
+                        <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash"></i> Eliminar</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <nav aria-label="Pagination">
+        <ul class="pagination">
+            <li class="page-item">
+                <a class="page-link" href="" aria-label="Previous">
+                    <span aria-hidden="true">«</span>
+                </a>
+            </li>
+            <li class="page-item active"><a class="page-link" href="">1</a></li>
+            <li class="page-item"><a class="page-link" href="">2</a></li>
+            <li class="page-item"><a class="page-link" href="">3</a></li>
+            <li class="page-item">
+                <a class="page-link" href="" aria-label="Next">
+                    <span aria-hidden="true">»</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</section>
+
