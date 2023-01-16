@@ -15,7 +15,7 @@
                 <div class="col-md-4">
                     <div class="form-floating">
                         <InputText @bind-Value="Model!.Central1Ip" id="input-central-ip1" class="form-control" required placeholder="IP do Central" />
-                        <label for="input-central-ip1">IP do Central</label>
+                        <DisplayName ModelField="@(() => Model.Central1Ip)" LabelFor="input-central-ip1"/>
                         @*<DisplayDescription For="@(() => Model.Central1Ip)" />*@
                         <ValidationMessage For="@(() => Model.Central1Ip)" class="invalid-feedback" />
                     </div>
@@ -23,9 +23,8 @@
 
                 <div class="col-md-3">
                     <div class="form-floating">
-                        @*<DisplayName For="@(() => Model.Central1Port)" />*@
                         <InputNumber @bind-Value="Model.Central1Port" class="form-control" id="input-central-port1" />
-                        <label for="input-central-port1">Porto do Central</label>
+                        <DisplayName ModelField="@(() => Model.Central1Port)" LabelFor="input-central-port1"/>
                         @*<DisplayDescription For="@(() => Model.Central1Port)" />*@
                         <ValidationMessage For="@(() => Model.Central1Port)" class="invalid-feedback" />
                     </div>

@@ -5,25 +5,26 @@
 
 @if (ChildContent == null)
 {
-    <label class="form-label">@label</label>
+    <label class="form-label" for="@LabelFor">@label</label>
 }
 else
 {
-    <label class="form-label">
+    <label class="form-label" for="@LabelFor">
         @label
         @ChildContent
     </label>
 }
 
 @code {
-    [Parameter] public Expression<Func<T>>? For { get; set; }
+    [Parameter] public Expression<Func<T>>? ModelField { get; set; }
     [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public string LabelFor { get; set; } = string.Empty;
 
     private string label => GetDisplayName();
 
     private string GetDisplayName()
     {
-        var expression = (MemberExpression?)For?.Body;
+        var expression = (MemberExpression?)ModelField?.Body;
         var value = expression?.Member.GetCustomAttribute(typeof(DisplayAttribute)) as DisplayAttribute;
         return value?.Name ?? expression?.Member?.Name ?? "";
     }
