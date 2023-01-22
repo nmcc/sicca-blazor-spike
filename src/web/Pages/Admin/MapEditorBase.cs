@@ -14,6 +14,22 @@ public class MapEditorBase : ComponentBase
 
     protected MapElement? SelectedElement => Elements.FirstOrDefault(s => s.Selected);
 
+    protected MapElement? DraggedElement { get; set; }
+
+    protected void SetDraggedElement(MapElement? element)
+    {
+        DraggedElement = element;
+    }
+
+    protected void OnDropElement(DragEventArgs e)
+    {
+        if (DraggedElement is not null)
+        {
+            DraggedElement.PositionX = Convert.ToInt32(e.OffsetX);
+            DraggedElement.PositionY = Convert.ToInt32(e.OffsetY);
+        }
+    }
+
     protected void ToggleSelection(MapElement selectedItem)
     {
         foreach (var element in Elements.Where(item => item != selectedItem))

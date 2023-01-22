@@ -1,0 +1,37 @@
+﻿@page "/admin/maps/editor-drag"
+@inherits MapEditorBase
+@attribute [Authorize(Roles = "Administrator")]
+
+@*Example: https://chrissainty.com/investigating-drag-and-drop-with-blazor/*@
+
+<div id="map"
+     style="position: relative"
+     ondragover="event.preventDefault();"
+     @ondrop="OnDropElement">
+    <img src="/img/maps/map_campolide.png" />
+
+    @foreach (var element in Elements)
+    {
+        <img src="@element.PathToImage"
+         style="z-index: 100; position: absolute; top: @(element.PositionY)px ; left: @(element.PositionX)px"
+         ondragover="event.preventDefault();"
+         draggable="true" alt="@element.Name"
+         @ondrop="OnDropElement"
+         @ondragstart="@(e => DraggedElement = element)"
+         @ondragend="@(s => DraggedElement = null)" />
+    }
+    <br />
+
+    @if (SelectedElement is null)
+    {
+        <span>Select an item</span>
+    }
+    else
+    {
+        <span>x = @(SelectedElement.PositionX); y = @(SelectedElement.PositionY)</span>
+    }
+
+    <p>
+        Para arrastar um elemento, escolha o elemento a arrastar e clique com o rato onde pretende que o elemento fique.
+    </p>
+</div>
