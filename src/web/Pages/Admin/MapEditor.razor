@@ -2,11 +2,21 @@
 @inherits MapEditorBase
 @attribute [Authorize(Roles = "Administrator")]
 
-<div class="container" style="position: relative">
-    <div>
-        <img src="/img/maps/map_campolide.png" />
-    </div>
-    <div style="z-index: 100; position: absolute; top: 194px ; left: 155px ">
-        <img src="/img/ac/operacional_24.png"/>
-    </div>
+@*Example: https://chrissainty.com/investigating-drag-and-drop-with-blazor/*@
+
+<div id="map"
+     style="position: relative"
+     ondragover="event.preventDefault();"
+     @ondrop="OnDrop">
+    <img src="/img/maps/map_campolide.png" />
+
+    <img src="@Element.PathToImage"
+         style="z-index: 100; position: absolute; top: @(Element.PositionY)px ; left: @(Element.PositionX)px"
+         ondragover="event.preventDefault();"
+         draggable="true" alt="@Element.Name"
+         @ondrop="OnDrop"
+         ondragstart="event.dataTransfer.setData('', event.target.id);" />
+    <br />
+
+    <span>x = @Element.PositionX ; y = @Element.PositionY</span>
 </div>
