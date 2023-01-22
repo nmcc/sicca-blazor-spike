@@ -9,14 +9,24 @@
      @onclick="ClickOnMap">
     <img src="/img/maps/map_campolide.png" />
 
-    <img src="@Element.PathToImage"
-         style="z-index: 100; position: absolute; top: @(Element.PositionY)px ; left: @(Element.PositionX)px; border:@(Element.Selected ? "solid": "none")"
-         alt="@Element.Name"
-         @onclick="@(e => ToggleSelection(Element.Name))"
+    @foreach (var element in Elements)
+    {
+        <img src="@(element.PathToImage)"
+         style="z-index: 100; position: absolute; top: @(element.PositionY)px ; left: @(element.PositionX)px; border:@(element.Selected ? "solid": "none")"
+         alt="@element.Name"
+         @onclick="@(e => ToggleSelection(element))"
          @onclick:stopPropagation="true" />
-    <br />
+    }
 
-    <span>x = @Element.PositionX ; y = @Element.PositionY ; Selected = @Element.Selected</span>
+    <br />
+    @if (SelectedElement is null)
+    {
+        <span>Select an item</span>
+    }
+    else
+    {
+        <span>x = @(SelectedElement.PositionX); y = @(SelectedElement.PositionY)</span>
+    }
 
     <p>
         Para arrastar um elemento, escolha o elemento a arrastar e clique com o rato onde pretende que o elemento fique.

@@ -6,26 +6,30 @@ namespace SICCA.Web.Spike.Pages.Admin;
 public class MapEditorBase : ComponentBase
 {
     //protected MapElement Element { get; init; } = new("CAEgn01", "/img/ac/operacional_24.png", 155, 194);
-    protected MapElement Element { get; init; } = new("CAEgn01", "/img/ac/operacional_24.png", 0, 0);
-
-
-    public void OnDrop(DragEventArgs dragEventArgs)
+    protected IEnumerable<MapElement> Elements { get; init; } = new List<MapElement>
     {
-        Element.PositionY = Convert.ToInt32(dragEventArgs.OffsetY);
-        Element.PositionX = Convert.ToInt32(dragEventArgs.OffsetX);
-    }
+        new("CAEgn01", "/img/ac/operacional_24.png", 155, 194),
+        new("CAEgn02", "/img/ac/operacional_24.png", 194, 194),
+    };
 
-    protected void ToggleSelection(string selectedItem)
+    protected MapElement? SelectedElement => Elements.FirstOrDefault(s => s.Selected);
+
+    protected void ToggleSelection(MapElement selectedItem)
     {
-        Element.Selected = !Element.Selected;
+        foreach (var element in Elements.Where(item => item != selectedItem))
+        {
+            element.Selected = false;
+        }
+
+        selectedItem.Selected = !selectedItem.Selected;
     }
 
     protected void ClickOnMap(MouseEventArgs e)
     {
-        if (Element.Selected)
+        if (SelectedElement is not null)
         {
-            Element.PositionY = Convert.ToInt32(e.OffsetY);
-            Element.PositionX = Convert.ToInt32(e.OffsetX);
+            SelectedElement.PositionX = Convert.ToInt32(e.OffsetX);
+            SelectedElement.PositionY = Convert.ToInt32(e.OffsetY);
         }
     }
 }
