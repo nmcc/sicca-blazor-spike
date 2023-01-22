@@ -1,0 +1,12 @@
+﻿@page "/admin/maps/editor"
+@inherits MapEditorBase
+@attribute [Authorize(Roles = "Administrator")]
+
+<div class="container" style="position: relative">
+    <div>
+        <img src="/img/maps/map_campolide.png" />
+    </div>
+    <div style="z-index: 100; position: absolute; top: 194px ; left: 155px ">
+        <img src="/img/ac/operacional_24.png"/>
+    </div>
+</div>

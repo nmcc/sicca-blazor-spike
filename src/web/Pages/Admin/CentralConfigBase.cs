@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using SICCA.Web.Spike.Models;
 
-namespace SICCA.Web.Spike.Areas.Admin;
+namespace SICCA.Web.Spike.Pages.Admin;
 
 public class CentralConfigBase : ComponentBase
 {
