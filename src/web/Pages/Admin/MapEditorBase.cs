@@ -14,6 +14,20 @@ public class MapEditorBase : ComponentBase
         Element.PositionY = Convert.ToInt32(dragEventArgs.OffsetY);
         Element.PositionX = Convert.ToInt32(dragEventArgs.OffsetX);
     }
+
+    protected void ToggleSelection(string selectedItem)
+    {
+        Element.Selected = !Element.Selected;
+    }
+
+    protected void ClickOnMap(MouseEventArgs e)
+    {
+        if (Element.Selected)
+        {
+            Element.PositionY = Convert.ToInt32(e.OffsetY);
+            Element.PositionX = Convert.ToInt32(e.OffsetX);
+        }
+    }
 }
 
 public class MapElement
@@ -33,4 +47,6 @@ public class MapElement
     public int PositionX { get; set; }
 
     public int PositionY { get; set; }
+
+    public bool Selected { get; set; }
 }

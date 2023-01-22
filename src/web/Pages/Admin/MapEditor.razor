@@ -6,17 +6,19 @@
 
 <div id="map"
      style="position: relative"
-     ondragover="event.preventDefault();"
-     @ondrop="OnDrop">
+     @onclick="ClickOnMap">
     <img src="/img/maps/map_campolide.png" />
 
     <img src="@Element.PathToImage"
-         style="z-index: 100; position: absolute; top: @(Element.PositionY)px ; left: @(Element.PositionX)px"
-         ondragover="event.preventDefault();"
-         draggable="true" alt="@Element.Name"
-         @ondrop="OnDrop"
-         ondragstart="event.dataTransfer.setData('', event.target.id);" />
+         style="z-index: 100; position: absolute; top: @(Element.PositionY)px ; left: @(Element.PositionX)px; border:@(Element.Selected ? "solid": "none")"
+         alt="@Element.Name"
+         @onclick="@(e => ToggleSelection(Element.Name))"
+         @onclick:stopPropagation="true" />
     <br />
 
-    <span>x = @Element.PositionX ; y = @Element.PositionY</span>
+    <span>x = @Element.PositionX ; y = @Element.PositionY ; Selected = @Element.Selected</span>
+
+    <p>
+        Para arrastar um elemento, escolha o elemento a arrastar e clique com o rato onde pretende que o elemento fique.
+    </p>
 </div>
