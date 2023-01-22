@@ -25,6 +25,8 @@
     <link href="~/css/style.css" rel="stylesheet" />
     <component type="typeof(HeadOutlet)" render-mode="ServerPrerendered" />
     <base href="~/" />
+
+    <script>MyDOMGetBoundingClientRect = (elementId, parm) => { return document.getElementById(elementId).getBoundingClientRect(); };</script>
 </head>
 <body>
     <component type="typeof(App)" render-mode="ServerPrerendered" />

@@ -17,21 +17,10 @@
          ondragover="event.preventDefault();"
          draggable="true" alt="@element.Name"
          @ondrop="OnDropElement"
-         @ondragstart="@(e => DraggedElement = element)"
-         @ondragend="@(s => DraggedElement = null)" />
+         @ondragstart="@(e => SetDraggedElement(element))"
+         />
     }
     <br />
 
-    @if (SelectedElement is null)
-    {
-        <span>Select an item</span>
-    }
-    else
-    {
-        <span>x = @(SelectedElement.PositionX); y = @(SelectedElement.PositionY)</span>
-    }
-
-    <p>
-        Para arrastar um elemento, escolha o elemento a arrastar e clique com o rato onde pretende que o elemento fique.
-    </p>
 </div>
+

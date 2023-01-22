@@ -1,11 +1,13 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.JSInterop;
 
 namespace SICCA.Web.Spike.Pages.Admin;
 
 public class MapEditorBase : ComponentBase
 {
-    //protected MapElement Element { get; init; } = new("CAEgn01", "/img/ac/operacional_24.png", 155, 194);
+    [Inject] protected IJSRuntime? JSRuntime { get; set; }
+
     protected IEnumerable<MapElement> Elements { get; init; } = new List<MapElement>
     {
         new("CAEgn01", "/img/ac/operacional_24.png", 155, 194),
@@ -21,12 +23,14 @@ public class MapEditorBase : ComponentBase
         DraggedElement = element;
     }
 
-    protected void OnDropElement(DragEventArgs e)
+    protected async Task OnDropElement(DragEventArgs e)
     {
         if (DraggedElement is not null)
         {
-            DraggedElement.PositionX = Convert.ToInt32(e.OffsetX);
-            DraggedElement.PositionY = Convert.ToInt32(e.OffsetY);
+            var result = await JSRuntime!.InvokeAsync<BoundingClientRect>("MyDOMGetBoundingClientRect", new object?[] { "map" });
+
+            DraggedElement.PositionX = (int)(e.ClientX - result.Left);
+            DraggedElement.PositionY = (int)(e.ClientY - result.Top);
         }
     }
 
@@ -69,4 +73,16 @@ public class MapElement
     public int PositionY { get; set; }
 
     public bool Selected { get; set; }
+}
+
+public class BoundingClientRect
+{
+    public double X { get; set; }
+    public double Y { get; set; }
+    public double Width { get; set; }
+    public double Height { get; set; }
+    public double Top { get; set; }
+    public double Right { get; set; }
+    public double Bottom { get; set; }
+    public double Left { get; set; }
 }
